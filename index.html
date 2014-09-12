@@ -50,7 +50,6 @@ text {
 <script src="nz.js"></script>
 <script>
 
-
 var width = 960,
     height = 1160;
 
@@ -67,14 +66,16 @@ var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-
+var index = 0;
+//NOTE: there is no 13 D: 8+13 = the same thing bruh
+var regionMap = [9, 1, 14, 2, 4, 5, 12, 6, 15, 8, 13, 7, 16, 3, 10, 11]
 var reg = topojson.feature(nz, nz.objects['nz-regional-councils-census'])
 
 
 svg.selectAll(".subunit")
     .data(reg.features)
   .enter().append("path")
-    .attr("class", function(d) { return "subunit " + d.id; })
+    .attr("class", function(d) { return "subunit " + regionMap[index++]; })
     .attr("d", path);
 
 
