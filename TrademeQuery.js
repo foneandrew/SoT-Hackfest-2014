@@ -46,7 +46,7 @@ function getJobData(region) {
   message = {
     action: jobURL,
     method: "GET",
-    parameters: {category:category, region:region, rows:500}//accountant, wellington
+    parameters: {category:category, region:region, rows:5}//accountant, wellington
   };
 
   OAuth.completeRequest(message, accessor);
