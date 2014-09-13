@@ -50,13 +50,13 @@ text {
 <script src="nz.js"></script>
 <script>
 
-var width = 800,
-    height = 500;
+var width = 600,
+        height = 600;
 
-var projection = d3.geo.equirectangular()  
-    .scale(2000)
-    .translate([width/2,height/2])
-    .rotate([-170,+40.2889]);
+var projection = d3.geo.equirectangular()
+        .scale(2000)
+        .translate([width / 2, height / 2])
+        .rotate([-174.7772, +41.2889]);
 
 var path = d3.geo.path()
     .projection(projection)
