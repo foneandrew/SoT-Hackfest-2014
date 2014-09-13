@@ -19,7 +19,7 @@ var index = 0;
 //subunit -> wikipedia index
 var map1 =[15, 12, 14, 13, 9, 10, 11, 0, 1, 2, 3, 5, 4, 6, 7, 8, 15];
 //wikipedia index -> trademe index
-var map2 =  [9, 1, 14, 2, 4, 5, 12, 6, 15, 8, 13, 7, 16, 3, 10, 11];
+var map2 =  [9, 1, 14, 2, 4, 5, 12, 6, 15, 8, 8, 7, 16, 3, 10, 11];
 var reg = topojson.feature(nz, nz.objects['nz-regions'])
 
 
