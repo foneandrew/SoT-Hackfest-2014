@@ -53,7 +53,11 @@ text {
 <body>
 
 <div class="banner">
-		moveable
+		teamMoveable
+	</div>
+	
+	<div class="info">
+		Etiam non orci orci. Sed ac egestas mi. Pellentesque lobortis cursus urna, vitae tincidunt massa elementum eu. Vivamus vitae mi vitae arcu mattis accumsan. Nunc erat mi, fringilla vel viverra ut, vehicula quis nulla. Etiam eu dapibus nisi, ac molestie augue. Pellentesque erat enim, ultricies sit amet hendrerit ac, pharetra quis risus. Sed tincidunt augue in sem aliquet ornare. Vivamus sed sem purus. Morbi arcu eros, viverra quis egestas eget, lacinia ut risus. Sed vulputate molestie ligula, nec ornare neque lacinia non. Nam sed laoreet nisi. Mauris at semper tortor. Integer nec vehicula ipsum. Vestibulum egestas, sem tincidunt blandit ornare, purus massa vulputate augue, non tempus sem justo in neque. Duis ut posuere nunc, interdum posuere velit.
 	</div>
 	
 	<div class="options">
@@ -72,6 +76,7 @@ text {
 				<option value="0001">Need to populate from first choice</option>
 			</select>
 			<br>
+			<input type="text" id="Keywords">
 			<br>
 			<input type="radio" name="JobType" onclick="setJobType(this.value);" value="fulltime" checked>Full Time<br>
 			<input type="radio" name="JobType" onclick="setJobType(this.value)" value="parttime">Part Time<br>
@@ -146,6 +151,7 @@ text {
 		//vars to hold the entered values
 		var job1Value = "";
 		var job2Value = "";
+		var keywordsValue = "";
 		var jobTypeValue = "fulltime";
 		var rentTypeValue = "rent";
 		var priceLowValue = 0;
@@ -166,12 +172,14 @@ text {
 			//get objects from html
 			var job1 = document.getElementById("Job1");
 			var job2 = document.getElementById("Job2");
+			var keywords = document.getElementById("Keywords");
 			var priceLow = document.getElementById("PriceLow");
 			var priceHigh = document.getElementById("PriceHigh");
 			
 			//update values
 			job1Value = job1.options[job1.selectedIndex].value;
 			job2Value = job2.options[job2.selectedIndex].value;
+			keywordsValue = keywords.value;
 			priceLowValue = Number(priceLow.options[priceLow.selectedIndex].value);
 			priceHighValue = Number(priceHigh.options[priceHigh.selectedIndex].value);
 			
@@ -187,7 +195,7 @@ text {
 			}
 			
 			//display results for controls for debug
-			document.getElementById('test').innerHTML="job1=" + job1Value + " job2=" + job2Value + " jobType =" + jobTypeValue + " rentType =" + rentTypeValue + " priceLow =" + priceLowValue + " priceHigh=" + priceHighValue;
+			document.getElementById('test').innerHTML="job1=" + job1Value + " job2=" + job2Value + " keywords=\"" + keywordsValue + "\" jobType =" + jobTypeValue + " rentType =" + rentTypeValue + " priceLow =" + priceLowValue + " priceHigh=" + priceHighValue;
 		}
 	</script>
 
