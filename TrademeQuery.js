@@ -23,6 +23,8 @@ var rentData = [];
 var buyData = [];
 var jobData = [];
 
+var category = "5001";
+
 var totalCount = 16;
 var dataCount = 0;
 
@@ -41,7 +43,7 @@ function getJobData(region) {
   message = {
     action: jobURL,
     method: "GET",
-    parameters: {catergory:"5001", region:region, rows:500}//accountant, wellington
+    parameters: {category:category, region:region, rows:500}//accountant, wellington
   };
 
   OAuth.completeRequest(message, accessor);
@@ -98,6 +100,7 @@ function getRentData(region) {
 }
 
 function getAllData() {
+	dataCount = 0;
 	for (i = 0; i < 16; i++) {
 	    getJobData(i);
 	    //getBuyData(i);
