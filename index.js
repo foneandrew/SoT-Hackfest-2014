@@ -70,13 +70,6 @@ function updateValues(){
 	}
 	window.category = jobCatValue;
 	refreshAllData();
-		//show variable values for debug
-		debugVars();
-}
-
-//display vars
-function debugVars(){
-	document.getElementById('test').innerHTML="jobCat=" + jobCatValue + ", jobSubCat=" + jobSubCatValue + ", keywords=\"" + keywordsValue + "\", jobType =" + jobTypeValue + ", rentType =" + rentTypeValue + ", priceLow =" + priceLowValue + ", priceHigh=" + priceHighValue;
 }
 
 //when page is read, populate the dropdowns
