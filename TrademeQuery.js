@@ -6,30 +6,43 @@ var accessor = {
   consumerSecret: "8A6E9A02BD6316ACA7CB3F2D57C28609"
 };
 
+function updateMap(index, color) {
+    elements = document.getElementsByClassName("subunit "+index);
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.fill = color;
+    }
+}
 
+var data = [];
+dataCount = 0;
 
-alert(url);
+function finishData() {
+	var max = Math.max.apply(Math, data);
+	for(var i=0;i<16;i++) {
+		updateMap(i, "#"+Math.round((data[i]*255)/max).toString(16)+"0000");
+	}
+}
 
-var data;
 function getJobData(region) {
 	message = {
 	  action: url,
 	  method: "GET",
 	  parameters: {region:region, rows:500}//accountant, wellington
 	};
-
 	OAuth.completeRequest(message, accessor);        
 	OAuth.SignatureMethod.sign(message, accessor);
-
 	request = url + '?' + OAuth.formEncode(message.parameters);
-	alert(message.parameters.region)
 	$.getJSON( request, function(jd) {
-		alert(region+" "+jd.TotalCount);
-		data = jd;
+		data[region] = jd.TotalCount;
+		dataCount++;
+		if(dataCount == 16) {
+			finishData();
+		}
 	});
 }
 
-getJobData(15);
-getJobData(1);
-getJobData(2);
-getJobData(3);
+function getJobsData() {
+	for(var i=0;i<16;i++) {
+		getJobData(i);
+	}
+}
