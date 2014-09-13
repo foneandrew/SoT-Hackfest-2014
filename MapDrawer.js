@@ -29,7 +29,7 @@ svg.selectAll(".subunit")
     .attr("class", function(d) { return "subunit " + map2[map1[index++]]; })
     .attr("d", path);
 
-getAllData();
+refreshAllData();
 
 //country labels things
 /*svg.selectAll(".subunit-label")

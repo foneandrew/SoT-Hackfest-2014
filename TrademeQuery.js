@@ -10,6 +10,7 @@ var accessor = {
   consumerSecret: "8A6E9A02BD6316ACA7CB3F2D57C28609"
 };
 
+//function to colour a region
 function updateMap(index, color) {
     elements = document.getElementsByClassName("subunit "+index);
     for (var i = 0; i < elements.length; i++) {
@@ -28,6 +29,7 @@ var category = "5001";
 var totalCount = 16;
 var dataCount = 0;
 
+//called when all data is loaded, updates the map colouring
 function finishData() {
 	alert("Data finished");
 	for(var i=0;i<15;i++) {
@@ -39,6 +41,7 @@ function finishData() {
 	}
 }
 
+//gets the job data for a region
 function getJobData(region) {
   message = {
     action: jobURL,
@@ -59,6 +62,7 @@ function getJobData(region) {
   });
 }
 
+//get property purchase data for a region
 function getBuyData(region) {
   message = {
     action: buyURL,
@@ -79,6 +83,7 @@ function getBuyData(region) {
   });
 }
 
+//get rent data for a region
 function getRentData(region) {
   message = {
     action: rentURL,
@@ -99,7 +104,8 @@ function getRentData(region) {
   });
 }
 
-function getAllData() {
+//gets all data, and updates the page
+function updateAllData() {
 	dataCount = 0;
 	for (i = 0; i < 16; i++) {
 	    getJobData(i);
