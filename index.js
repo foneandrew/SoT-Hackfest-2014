@@ -69,6 +69,10 @@ function updateValues(){
 		priceHighValue = $("#PriceHigh option:selected").val();
 	}
 	window.category = jobCatValue;
+	console.log(jobSubCatValue);
+	if(jobSubCatValue != ""){
+		window.category = jobSubCatValue;
+	}
 	refreshAllData();
 }
 
