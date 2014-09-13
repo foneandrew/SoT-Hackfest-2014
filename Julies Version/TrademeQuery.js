@@ -4,10 +4,10 @@ var rentURL = "https://api.trademe.co.nz/v1/Search/Property/Rental.json";
 
 //OAuth 
 var accessor = {
-  //token: "5A713505D7B11F994281F115FF6F5761",
-  //tokenSecret: "AF6FF8D85804539140FA96D02754E01F",
-  token: "BA56907F34180FC177648F551DC43065",
-  tokenSecret: "FE5211357DED93654FF7BF0E9A3EB2E5",
+  token: "5A713505D7B11F994281F115FF6F5761",
+  tokenSecret: "AF6FF8D85804539140FA96D02754E01F",
+  //token: "BA56907F34180FC177648F551DC43065",
+  //tokenSecret: "FE5211357DED93654FF7BF0E9A3EB2E5",
   consumerKey : "5815646823D13FA7222C0797A2749E60",
   consumerSecret: "8A6E9A02BD6316ACA7CB3F2D57C28609"
 };
@@ -35,13 +35,14 @@ var dataCount = 0;
 //called when all data is loaded, updates the map colouring
 function finishData() {
 	console.log("Data finished");
-	for(var i=0;i<=16;i++) {
-		finalData[i] = jobData[i];
-
   document.getElementsByClassName("body1")[0].innerHTML = "Average rent price: "+getAvgRentForRegion(1)+"<br>"+jobData[1]+" jobs match your search";
   document.getElementsByClassName("body2")[0].innerHTML = "Average rent price: "+getAvgRentForRegion(15)+"<br>"+jobData[15]+" jobs match your search";
   document.getElementsByClassName("body3")[0].innerHTML = "Average rent price: "+getAvgRentForRegion(3)+"<br>"+jobData[3]+" jobs match your search";
-		finalData[i] = getAvgRentForRegion(i);
+    
+	for(var i=0;i<=16;i++) {
+		finalData[i] = jobData[i];
+
+    //finalData[i] = getAvgRentForRegion(i);
 		if(isNaN(finalData[i])){
 			finalData[i] = 0;
 		}
@@ -49,7 +50,14 @@ function finishData() {
 	console.log(finalData)
 	var max = Math.max.apply(Math, finalData);
 	for(var i=0;i<=16;i++) {
-		updateMap(i, "#"+Math.round((finalData[i]*255)/max).toString(16)+"0000");
+    /*var colString = Math.round((finalData[i]*255)/max).toString(16);
+    colString = colString.length == 1 ? "0" + colString : colString;
+    var padNum = Math.round((finalData[i] / max) * 5);
+		updateMap(i, "#"+ colString + padNum + padNum + padNum + padNum);*/
+     var colString = Math.round(22+(finalData[i]*233)/max).toString(16);
+    colString = colString.length == 1 ? "0" + colString : colString;
+    //var padNum = Math.round((finalData[i] / max) * 5);
+    updateMap(i, "#"+ colString + "2222");
 	}
 }
 
