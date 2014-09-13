@@ -17,18 +17,23 @@ function updateMap(index, color) {
     }
 }
 
+var finalData = [];
+
 var rentData = [];
 var buyData = [];
 var jobData = [];
 
-var totalCount = 45;
+var totalCount = 16;
 var dataCount = 0;
 
 function finishData() {
-	var max = Math.max.apply(Math, jobData);
-	alert("Data finished")
+	alert("Data finished");
+	for(var i=0;i<15;i++) {
+		finalData[i] = jobData[i];
+	}
+	var max = Math.max.apply(Math, finalData);
 	for(var i=0;i<16;i++) {
-		updateMap(i, "#"+Math.round((jobData[i]*255)/max).toString(16)+"0000");
+		updateMap(i, "#"+Math.round((finalData[i]*255)/max).toString(16)+"0000");
 	}
 }
 
@@ -95,7 +100,7 @@ function getRentData(region) {
 function getAllData() {
 	for (i = 0; i < 16; i++) {
 	    getJobData(i);
-	    getBuyData(i);
-	    getRentData(i);
+	    //getBuyData(i);
+	    //getRentData(i);
 	}
 }
