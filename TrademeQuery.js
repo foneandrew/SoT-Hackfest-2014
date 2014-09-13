@@ -1,7 +1,8 @@
-var url = "https://api.trademe.co.nz/v1/Search/Jobs.json";
-var buyURL = "http://api.trademe.co.nz/v1/Search/Property/Residential.json";
-var rentURL = "http://api.trademe.co.nz/v1/Search/Property/Rental.json";
+var jobURL = "https://api.trademe.co.nz/v1/Search/Jobs.json";
+var buyURL = "https://api.trademe.co.nz/v1/Search/Property/Residential.json";
+var rentURL = "https://api.trademe.co.nz/v1/Search/Property/Rental.json";
 
+//OAuth 
 var accessor = {
   token: "5A713505D7B11F994281F115FF6F5761",
   tokenSecret: "AF6FF8D85804539140FA96D02754E01F",
@@ -16,17 +17,21 @@ function updateMap(index, color) {
     }
 }
 
-var data = [];
-dataCount = 0;
+var rentData = [];
+var buyData = [];
+var jobData = [];
+
+var totalCount = 45;
+var dataCount = 0;
 
 function finishData() {
-	var max = Math.max.apply(Math, data);
+	var max = Math.max.apply(Math, jobData);
+	alert("Data finished")
 	for(var i=0;i<16;i++) {
-		updateMap(i, "#"+Math.round((data[i]*255)/max).toString(16)+"0000");
+		updateMap(i, "#"+Math.round((jobData[i]*255)/max).toString(16)+"0000");
 	}
 }
 
-var data;
 function getJobData(region) {
   message = {
     action: jobURL,
@@ -38,11 +43,10 @@ function getJobData(region) {
   OAuth.SignatureMethod.sign(message, accessor);
 
   request = jobURL + '?' + OAuth.formEncode(message.parameters);
-  alert(message.parameters.region)
   $.getJSON( request, function(jd) {
-    data[region] = jd.TotalCount;
+    jobData[region] = jd.TotalCount;
 		dataCount++;
-		if(dataCount == 16) {
+		if(dataCount == totalCount) {
 			finishData();
 		}
   });
@@ -59,11 +63,10 @@ function getBuyData(region) {
   OAuth.SignatureMethod.sign(message, accessor);
 
   request = buyURL + '?' + OAuth.formEncode(message.parameters);
-  alert(message.parameters.region)
   $.getJSON( request, function(jd) {
-    data[region] = jd.TotalCount;
+    buyData[region] = jd.TotalCount;
 		dataCount++;
-		if(dataCount == 16) {
+		if(dataCount == totalCount) {
 			finishData();
 		}
   });
@@ -80,17 +83,19 @@ function getRentData(region) {
   OAuth.SignatureMethod.sign(message, accessor);
 
   request = rentURL + '?' + OAuth.formEncode(message.parameters);
-  alert(message.parameters.region)
   $.getJSON( request, function(jd) {
-    data[region] = jd.TotalCount;
+    rentData[region] = jd.TotalCount;
 		dataCount++;
-		if(dataCount == 16) {
+		if(dataCount == totalCount) {
 			finishData();
 		}
   });
 }
-for (i = 1; i < 16; i++) {
-    getJobData(i);
-    getBuyData(i);
-    getRentData(i);
+
+function getAllData() {
+	for (i = 0; i < 16; i++) {
+	    getJobData(i);
+	    getBuyData(i);
+	    getRentData(i);
+	}
 }
