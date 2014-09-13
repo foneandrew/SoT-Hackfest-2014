@@ -34,8 +34,8 @@ var dataCount = 0;
 function finishData() {
 	console.log("Data finished");
 	for(var i=0;i<=16;i++) {
-		//finalData[i] = jobData[i];
-		finalData[i] = getAvgRentForRegion(i);
+		finalData[i] = jobData[i];
+		//finalData[i] = getAvgRentForRegion(i);
 		if(isNaN(finalData[i])){
 			finalData[i] = 0;
 		}
@@ -57,7 +57,7 @@ function getJobData(region) {
 
   OAuth.completeRequest(message, accessor);
   OAuth.SignatureMethod.sign(message, accessor);
-
+  console.log(message.parameters.category);
   request = jobURL + '?' + OAuth.formEncode(message.parameters);
   $.getJSON( request, function(jd) {
     jobData[region] = jd.TotalCount;
@@ -122,8 +122,8 @@ function getAvgRentForRegion(region) {
 function refreshAllData() {
 	dataCount = 0;
 	for (i = 0; i <= 16; i++) {
-	    //getJobData(i);
+	    getJobData(i);
 	    //getBuyData(i);
-	    getRentData(i);
+	    //getRentData(i);
 	}
 }

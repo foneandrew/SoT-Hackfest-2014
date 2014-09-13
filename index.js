@@ -68,6 +68,8 @@ function updateValues(){
 		priceLowValue = $("#PriceLow option:selected").val();
 		priceHighValue = $("#PriceHigh option:selected").val();
 	}
+	window.category = jobCatValue;
+	refreshAllData();
 		//show variable values for debug
 		debugVars();
 }
