@@ -29,7 +29,7 @@ var jobData = [];
 
 var category = "";
 
-var totalCount = 17;
+var totalCount = 34;
 var dataCount = 0;
 
 //called when all data is loaded, updates the map colouring
@@ -37,7 +37,11 @@ function finishData() {
 	console.log("Data finished");
 	for(var i=0;i<=16;i++) {
 		finalData[i] = jobData[i];
-		//finalData[i] = getAvgRentForRegion(i);
+
+  document.getElementsByClassName("body1")[0].innerHTML = "Average rent price: "+getAvgRentForRegion(1)+"<br>"+jobData[1]+" jobs match your search";
+  document.getElementsByClassName("body2")[0].innerHTML = "Average rent price: "+getAvgRentForRegion(15)+"<br>"+jobData[15]+" jobs match your search";
+  document.getElementsByClassName("body3")[0].innerHTML = "Average rent price: "+getAvgRentForRegion(3)+"<br>"+jobData[3]+" jobs match your search";
+		finalData[i] = getAvgRentForRegion(i);
 		if(isNaN(finalData[i])){
 			finalData[i] = 0;
 		}
@@ -123,9 +127,12 @@ function getAvgRentForRegion(region) {
 //gets all data, and updates the page
 function refreshAllData() {
 	dataCount = 0;
+  document.getElementById("city1").innerHTML = "Auckland";
+  document.getElementById("city2").innerHTML = "Wellington";
+  document.getElementById("city3").innerHTML = "Canterbury";
 	for (i = 0; i <= 16; i++) {
 	    getJobData(i);
 	    //getBuyData(i);
-	    //getRentData(i);
+	    getRentData(i);
 	}
 }
