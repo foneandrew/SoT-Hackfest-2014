@@ -6,21 +6,30 @@ var accessor = {
   consumerSecret: "8A6E9A02BD6316ACA7CB3F2D57C28609"
 };
 
-var message = {
-  action: url,
-  method: "GET",
-  parameters: {category: "5001", region:15, rows:500}//accountant, wellington
-};
 
-OAuth.completeRequest(message, accessor);        
-OAuth.SignatureMethod.sign(message, accessor);
-url = url + '?' + OAuth.formEncode(message.parameters);
 
 alert(url);
 
 var data;
+function getJobData(region) {
+	message = {
+	  action: url,
+	  method: "GET",
+	  parameters: {region:region, rows:500}//accountant, wellington
+	};
 
-$.getJSON( url, function(jd) {
-	alert(jd);
-	data = jd;
-});
+	OAuth.completeRequest(message, accessor);        
+	OAuth.SignatureMethod.sign(message, accessor);
+
+	request = url + '?' + OAuth.formEncode(message.parameters);
+	alert(message.parameters.region)
+	$.getJSON( request, function(jd) {
+		alert(region+" "+jd.TotalCount);
+		data = jd;
+	});
+}
+
+getJobData(15);
+getJobData(1);
+getJobData(2);
+getJobData(3);
