@@ -10,7 +10,7 @@ var path = d3.geo.path()
     .projection(projection)
     .pointRadius(2);
 
-var svg = d3.select("map").append("svg")
+var svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height);
 
