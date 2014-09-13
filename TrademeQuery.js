@@ -9,7 +9,7 @@ var accessor = {
 var message = {
   action: url,
   method: "GET",
-  parameters: {}
+  parameters: {category: "5001", region:15, rows:500}//accountant, wellington
 };
 
 OAuth.completeRequest(message, accessor);        
@@ -18,8 +18,9 @@ url = url + '?' + OAuth.formEncode(message.parameters);
 
 alert(url);
 
-
+var data;
 
 $.getJSON( url, function(jd) {
 	alert(jd);
+	data = jd;
 });
