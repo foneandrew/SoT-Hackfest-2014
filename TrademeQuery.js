@@ -105,7 +105,7 @@ function getRentData(region) {
 }
 
 //gets all data, and updates the page
-function updateAllData() {
+function refreshAllData() {
 	dataCount = 0;
 	for (i = 0; i < 16; i++) {
 	    getJobData(i);
