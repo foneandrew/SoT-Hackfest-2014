@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.subunit { fill: #999999; }
+
+
+.subunit-boundary {
+  fill: none;
+  stroke: #777;
+  stroke-dasharray: 2,2;
+  stroke-linejoin: round;
+}
+
+text {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  pointer-events: none;
+}
+
+</style>
+  <head>
+<title>
+  Moveable
+</title>
+<link rel="stylesheet" href="index.css">
+
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        <script src="http://underscorejs.org/underscore-min.js"></script>
+</head>
+<body>
+
+  <div id="Mapbig">
+<div id="map"></div>
+</div> 
+
+<div class="banner">
+    <img id ="Main" src="img/Moveable_text.png">
+  </div>
+  
+  <div class="info">
+    <div id="city1">
+      Wellington
+    </div>
+    <br>
+    <div class="body1">
+      64 houses match your search
+      <br>
+      103 jobs within your price range
+      <div id="moreInfo1">
+        <br>
+        Click here for more info
+      </div>
+    </div>
+    <br>
+    <br>
+    <div id="city2">
+      Wellington
+    </div>
+    <br>
+    <div class="body2">
+      64 houses match your search
+      <br>
+      103 jobs within your price range
+      <div id="moreInfo2">
+        <br>
+        Click here for more info
+      </div>
+    </div>
+    <br>
+    <br>
+    <div id="city3">
+      Wellington
+    </div>
+    <br>
+    <div class="body3">
+      64 houses match your search
+      <br>
+      103 jobs within your price range
+      <div id="moreInfo3">
+        <br>
+        Click here for more info
+      </div>
+    </div>
+
+  </div>
+
+  <div id="moreInfoPage1">
+    <div class="Title1">
+      Wellington
+    </div>
+    <div class="InfoW">
+    This city is located at the southwestern tip of the North Island, 
+    between Cook Strait and <br> the Rimutaka Range.  It is the major population centre of the southern North Island, <br> and is the administrative centre of the Wellington Region, which also includes <br> the Kapiti Coast and Wairarapa. Wellington is the world's southernmost capital city <br> of a sovereign state.
+    Below are some recommended listings. 
+    </div>
+  </div>
+
+  <div id="moreInfoPage2">
+    <div class="Title1">
+      Wellington
+    </div>
+    <div class="Body1">
+      <br>
+    This city is located at the southwestern tip of the North Island, between Cook Strait and the Rimutaka Range. It is the major population centre of the southern North Island, and is the administrative centre of the Wellington Region, which also includes the Kapiti Coast and Wairarapa. Wellington is the world's southernmost capital city of a sovereign state.
+    Below are some recommended listings. 
+    </div>
+  </div>
+
+  <div id="moreInfoPage3">
+    <div class="Title1">
+      Wellington
+    </div>
+    <div class="Body1">
+      <br>
+    This city is located at the southwestern tip of the North Island, between Cook Strait and the Rimutaka Range. It is the major population centre of the southern North Island, and is the administrative centre of the Wellington Region, which also includes the Kapiti Coast and Wairarapa. Wellington is the world's southernmost capital city of a sovereign state.
+    Below are some recommended listings. 
+    </div>
+  </div>
+
+
+  <div class="tab">
+     tab
+    </div>
+  <div class="options">
+
+
+    <h2 id="Job">Job</h2>
+    <form name="input" action="javascript:testButton();">
+    
+      <select id="JobCat" onchange="javascript:generateJobCats(false);">
+      </select>
+      <div class='arrow-image'></div>
+
+      <select id="JobSubCat">
+      </select>
+
+      <input type="text" id="Keywords">
+      
+
+      <div class="fullTime checkbox-wrapper">
+        <input id="btn_1" type="radio" name="JobType" onclick="setJobType(this.value);" value="fulltime" checked>
+        <p id="FT"> Full Time </p>
+      </div>
+      <div class="partTime checkbox-wrapper">
+        <input id="btn_2" type="radio" name="JobType" onclick="setJobType(this.value)" value="parttime">
+        <p id="PT"> Part Time </p>
+      </div>
+      <div style="clear: both"></div>
+      
+      <h2 id="Living">Living</h2>
+
+      <div class="livingLine">
+      <div class="checkbox-wrapper">
+        <input id="btn_3" type="radio" name="RentType" onclick="setRentType(this.value)" value="rent" checked>
+        <p id="RT"> Renting </p>
+      </div>
+      <div class="buying checkbox-wrapper">
+        <input id="btn_4" type="radio" name="RentType" onclick="setRentType(this.value)" value="buy">
+        <p id="BT"> Buying </p>
+      </div>
+
+      </div>
+      <div id="Price">
+      Price:
+      </div>
+      <select id="PriceLow">
+        <option value="0">Any</option>
+        <option value="100000">100k</option>
+        <option value="150000">150k</option>
+        <option value="200000">200k</option>
+        <option value="250000">250k</option>
+        <option value="300000">300k</option>
+        <option value="350000">350k</option>
+        <option value="400000">400k</option>
+        <option value="450000">450k</option>
+        <option value="500000">500k</option>
+        <option value="550000">550k</option>
+        <option value="600000">600k</option>
+        <option value="700000">700k</option>
+        <option value="800000">800k</option>
+        <option value="900000">900k</option>
+        <option value="1000000">1M</option>
+        <option value="1250000">1.25M</option>
+        <option value="1500000">1.5M</option>
+        <option value="1750000">1.75M</option>
+        <option value="2000000">2M</option>
+        <option value="2500000">2.5M</option>
+        <option value="3000000">3M</option>
+        <option value="4000000">4M</option>
+        <option value="5000000">5M</option>
+        <option value="10000000">10M</option>
+      </select>
+      <div id="to">
+      to
+      </div>
+      <select id="PriceHigh">
+        <option value="-1">Any</option>
+        <option value="100000">100k</option>
+        <option value="150000">150k</option>
+        <option value="200000">200k</option>
+        <option value="250000">250k</option>
+        <option value="300000">300k</option>
+        <option value="350000">350k</option>
+        <option value="400000">400k</option>
+        <option value="450000">450k</option>
+        <option value="500000">500k</option>
+        <option value="550000">550k</option>
+        <option value="600000">600k</option>
+        <option value="700000">700k</option>
+        <option value="800000">800k</option>
+        <option value="900000">900k</option>
+        <option value="1000000">1M</option>
+        <option value="1250000">1.25M</option>
+        <option value="1500000">1.5M</option>
+        <option value="1750000">1.75M</option>
+        <option value="2000000">2M</option>
+        <option value="2500000">2.5M</option>
+        <option value="3000000">3M</option>
+        <option value="4000000">4M</option>
+        <option value="5000000">5M</option>
+        <option value="-1">10M+</option>
+      </select>
+      <button id="search" onclick="updateValues()">Search</button>
+    </form>
+
+    
+  </div>
+
+  
+   
+  <p id="test"></p>
+    <script src="index.js"></script>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="nz.js"></script>
+<script src="sha1.js"></script>
+<script src="oauth.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="TrademeQuery.js"></script>
+<script src="mapDrawer.js"></script>
+
+</body>
