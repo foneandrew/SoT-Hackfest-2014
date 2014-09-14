@@ -1,25 +1,181 @@
 body{
 	height:100%;
+	width: 100%;
+	max-width: 1000px;
+	line-height: 1.3;
+	font-family: sans-serif;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+body, input, select, textarea, button, .ui-btn {
+
+	line-height: 1.3;
+	font-family: sans-serif;
+}
+
+
+h1{
+	opacity: 0;
 }
 
 .banner{
 	position:absolute;
-	background-color:blue;
-	padding:1%;
+	background-color: #dcdcdd;
+	padding:2%;
 	top:0%;
-	width:90%;
-	margin-top:5%;
-	margin-bottom:5%;
-	font-size:18pt;
+	width:100%;
+	margin-top:2%;
+	margin-bottom:3%;
+
+}
+
+#Main {
+	width:60%;
+	margin-left: 15%;
+
 }
 
 .options{
+	border-radius: 10px;
+	border-color: black; // #437e12 ;
+	border: 30px;
 	position:absolute;
 	background-color:green;
-	left:0;
-	top:20%;
-	width:300px;
-	height:80%;
+	left:5%;
+	top:25%;
+	width:23%;
+	height:70%;
+	-webkit-transform: translateZ (0);
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	transition:2s;
+}
+
+.options.clicked{
+	left: -22%;
+	transition: 2s;
+}
+
+#Job{
+	position: relative;
+	left: 10%;
+	color: white;
+
+}
+
+.checkbox-wrapper {
+	float: left;
+	width: 80px;
+	padding: 15px 12px;
+}
+
+.partTime, .buying{
+	position: relative;
+	left: 0%;
+}
+
+/* Keywords input button*/
+
+#Keywords {
+	position: relative;
+	width: 89%;
+	left: 5%;
+	border-radius: 10px;
+	height: 5%;
+	line-height: 2.2;
+}
+
+#Living {
+	position: relative;
+	left: 10%;
+	color: white;
+	top: 0%;
+	margin-top: 10%;
+}
+
+#Price, #to {
+	position: relative;
+	left: 5%;
+	margin-top: 2%
+}
+
+.livingLine{
+	position: relative;
+	margin-top: -5%;
+}
+
+#btn_1, #btn_3 {
+	margin: 0;
+	margin-top: 5%;
+	margin-left: 5%;
+}
+
+#FT {
+	position: relative;
+	left: 15%;
+	margin-top: -6.8%;
+}
+
+#PT {
+	position: relative;
+	left: 65%;
+	margin-top: -6.75%;
+}
+
+#RT {
+	position: relative;
+	left: 15%;
+	margin-top: -6.8%;
+}
+
+#BT {
+	position: relative;
+	left: 65%;
+	margin-top: -6.75%;
+}
+
+#btn_2, #btn_4 {
+
+	margin: 0;
+	margin-top: -5%;
+	margin-left: 55%;
+}
+
+#search {
+	position: relative;
+	left: 25%;
+	width: 50%;
+	background-color: #ffd838;
+	border-color: #aa7b12;
+	border-opacity:0.5;
+	text-align: center;
+}
+
+.tab{
+	width:5%;
+	height:20%;
+	position: absolute;
+	left: 25%;
+	top: 25%;
+	background-color: green;
+	border-radius: 10px;
+	transition: 2s;
+}
+
+.tab.clicked{
+	left: -2%;
+	transition: 2s;
+}
+
+/* this is the category and subcategory button*/
+.ui-btn, label.ui-btn {
+font-weight: 600;
+border-width: 1px;
+border-style: solid;
+border-radius: 10px;
+width: 80%;
+left: 5%;
+margin: -10px;
 }
 
 .info{
@@ -29,5 +185,105 @@ body{
 	height:80%;
 	width:45%;
 	text-align:center;
+	opacity: 0;
 }
 
+.info.clicked{
+	opacity: 1;
+}
+
+.ui-select {
+margin-top: .5em;
+margin-bottom: .5em;
+position: relative;
+}
+
+.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited {
+background-color: #f6f6f6;
+border-color: #ddd;
+}
+
+.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited {
+background-color: #f6f6f6;
+border-color: #ddd;
+color: #333;
+text-shadow: 0 1px 0 #f3f3f3;
+}
+
+.ui-btn-icon-right {
+padding-right: 2.5em;
+}
+
+.ui-btn {
+
+margin: .5em 0;
+padding: .7em 1em;
+display: block;
+position: relative;
+text-align: left;
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+body, input, select, textarea, button, .ui-btn {
+font-size: .9em;
+line-height: 1.3;
+font-family: sans-serif;
+}
+
+.ui-select .ui-btn select {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+min-height: 1.5em;
+min-height: 100%;
+height: 3em;
+max-height: 100%;
+outline: 0;
+-webkit-border-radius: inherit;
+border-radius: inherit;
+-webkit-appearance: none;
+-moz-appearance: none;
+cursor: pointer;
+filter: Alpha(Opacity=0);
+opacity: 0;
+z-index: 2;
+}
+
+.ui-icon-carat-d::after {
+background-image: url("img/Arrow.jpg");
+}
+
+.ui-btn-icon-right::after {
+right: .5625em;
+}
+.ui-btn-icon-notext::after, .ui-btn-icon-left::after, .ui-btn-icon-right::after {
+top: 50%;
+margin-top: -11px;
+}
+.ui-btn-icon-left::after, .ui-btn-icon-right::after, .ui-btn-icon-top::after, .ui-btn-icon-bottom::after, .ui-btn-icon-notext::after {
+content: "";
+position: absolute;
+display: block;
+width: 22px;
+height: 22px;
+}
+.ui-btn-icon-left::after, .ui-btn-icon-right::after, .ui-btn-icon-top::after, .ui-btn-icon-bottom::after, .ui-btn-icon-notext::after {
+background-color: #666;
+background-color: rgba(0,0,0,.3);
+background-position: center center;
+background-repeat: no-repeat;
+-webkit-border-radius: 1em;
+border-radius: 1em;
+}
+
+body {
+	margin-right: 0;
+}

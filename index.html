@@ -44,7 +44,141 @@ text {
 }
 
 </style>
+  <head>
+<title>
+  Moveable
+</title>
+<link rel="stylesheet" href="index.css">
+
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        <script src="http://underscorejs.org/underscore-min.js"></script>
+</head>
 <body>
+
+<div class="banner">
+    <img id ="Main" src="img/Moveable_text.png">
+  </div>
+  
+  <div class="info">
+    Etiam non orci orci. Sed ac egestas mi. Pellentesque lobortis cursus urna, vitae tincidunt massa elementum eu. Vivamus vitae mi vitae arcu mattis accumsan. Nunc erat mi, fringilla vel viverra ut, vehicula quis nulla. Etiam eu dapibus nisi, ac molestie augue. Pellentesque erat enim, ultricies sit amet hendrerit ac, pharetra quis risus. Sed tincidunt augue in sem aliquet ornare. Vivamus sed sem purus. Morbi arcu eros, viverra quis egestas eget, lacinia ut risus. Sed vulputate molestie ligula, nec ornare neque lacinia non. Nam sed laoreet nisi. Mauris at semper tortor. Integer nec vehicula ipsum. Vestibulum egestas, sem tincidunt blandit ornare, purus massa vulputate augue, non tempus sem justo in neque. Duis ut posuere nunc, interdum posuere velit.
+  </div>
+
+  <div class="tab">
+     tab
+    </div>
+  <div class="options">
+
+
+    <h2 id="Job">Job</h2>
+    <form name="input" action="javascript:testButton();">
+    
+      <select id="JobCat" onchange="javascript:generateJobCats(false);">
+      </select>
+      <div class='arrow-image'></div>
+
+      <select id="JobSubCat">
+      </select>
+
+      <input type="text" id="Keywords">
+      
+
+      <div class="fullTime checkbox-wrapper">
+        <input id="btn_1" type="radio" name="JobType" onclick="setJobType(this.value);" value="fulltime" checked>
+        <p id="FT"> Full Time </p>
+      </div>
+      <div class="partTime checkbox-wrapper">
+        <input id="btn_2" type="radio" name="JobType" onclick="setJobType(this.value)" value="parttime">
+        <p id="PT"> Part Time </p>
+      </div>
+      <div style="clear: both"></div>
+      
+      <h2 id="Living">Living</h2>
+
+      <div class="livingLine">
+      <div class="checkbox-wrapper">
+        <input id="btn_3" type="radio" name="RentType" onclick="setRentType(this.value)" value="rent" checked>
+        <p id="RT"> Renting </p>
+      </div>
+      <div class="buying checkbox-wrapper">
+        <input id="btn_4" type="radio" name="RentType" onclick="setRentType(this.value)" value="buy">
+        <p id="BT"> Buying </p>
+      </div>
+
+      </div>
+      <div id="Price">
+      Price:
+      </div>
+      <select id="PriceLow">
+        <option value="0">Any</option>
+        <option value="100000">100k</option>
+        <option value="150000">150k</option>
+        <option value="200000">200k</option>
+        <option value="250000">250k</option>
+        <option value="300000">300k</option>
+        <option value="350000">350k</option>
+        <option value="400000">400k</option>
+        <option value="450000">450k</option>
+        <option value="500000">500k</option>
+        <option value="550000">550k</option>
+        <option value="600000">600k</option>
+        <option value="700000">700k</option>
+        <option value="800000">800k</option>
+        <option value="900000">900k</option>
+        <option value="1000000">1M</option>
+        <option value="1250000">1.25M</option>
+        <option value="1500000">1.5M</option>
+        <option value="1750000">1.75M</option>
+        <option value="2000000">2M</option>
+        <option value="2500000">2.5M</option>
+        <option value="3000000">3M</option>
+        <option value="4000000">4M</option>
+        <option value="5000000">5M</option>
+        <option value="10000000">10M</option>
+      </select>
+      <div id="to">
+      to
+      </div>
+      <select id="PriceHigh">
+        <option value="-1">Any</option>
+        <option value="100000">100k</option>
+        <option value="150000">150k</option>
+        <option value="200000">200k</option>
+        <option value="250000">250k</option>
+        <option value="300000">300k</option>
+        <option value="350000">350k</option>
+        <option value="400000">400k</option>
+        <option value="450000">450k</option>
+        <option value="500000">500k</option>
+        <option value="550000">550k</option>
+        <option value="600000">600k</option>
+        <option value="700000">700k</option>
+        <option value="800000">800k</option>
+        <option value="900000">900k</option>
+        <option value="1000000">1M</option>
+        <option value="1250000">1.25M</option>
+        <option value="1500000">1.5M</option>
+        <option value="1750000">1.75M</option>
+        <option value="2000000">2M</option>
+        <option value="2500000">2.5M</option>
+        <option value="3000000">3M</option>
+        <option value="4000000">4M</option>
+        <option value="5000000">5M</option>
+        <option value="-1">10M+</option>
+      </select>
+      <button id="search" onclick="updateValues()">Search</button>
+    </form>
+
+    
+  </div>
+
+  
+   
+  <p id="test"></p>
+    <script src="index.js"></script>
+
+<div id="map" left="50%">
+</div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script src="nz.js"></script>
@@ -53,3 +187,5 @@ text {
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="TrademeQuery.js"></script>
 <script src="mapDrawer.js"></script>
+
+</body>
