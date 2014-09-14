@@ -36,6 +36,12 @@ h1{
 
 }
 
+#map{
+	margin-left:60%;
+	top: 20%;
+
+}
+
 .options{
 	border-radius: 10px;
 	border-color: black; // #437e12 ;
