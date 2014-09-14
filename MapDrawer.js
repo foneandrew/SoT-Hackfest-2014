@@ -27,7 +27,12 @@ svg.selectAll(".subunit")
     .data(reg.features)
   .enter().append("path")
     .attr("class", function(d) { return "subunit " + map2[map1[index++]]; })
-    .attr("d", path);
+    .attr("d", path)
+
+$(".subunit").click(function(e) {
+  var id = e.currentTarget.className.baseVal.split(" ")[1];
+  //document.getElementById("info")=id;
+});
 
 refreshAllData();
 
@@ -56,4 +61,3 @@ refreshAllData();
     .attr("dy", ".35em")
     .style("text-anchor", function(d) { return d.geometry.coordinates[0] > -1 ? "start" : "end"; })
     .text(function(d) { return d.properties.name; });*/
-
