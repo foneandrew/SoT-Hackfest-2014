@@ -1,4 +1,7 @@
 var url = "https://api.trademe.co.nz/v1/Search/Jobs.json";
+var buyURL = "http://api.trademe.co.nz/v1/Search/Property/Residential.json";
+var rentURL = "http://api.trademe.co.nz/v1/Search/Property/Rental.json";
+
 var accessor = {
   token: "5A713505D7B11F994281F115FF6F5761",
   tokenSecret: "AF6FF8D85804539140FA96D02754E01F",
@@ -23,26 +26,71 @@ function finishData() {
 	}
 }
 
+var data;
 function getJobData(region) {
-	message = {
-	  action: url,
-	  method: "GET",
-	  parameters: {region:region, rows:500}//accountant, wellington
-	};
-	OAuth.completeRequest(message, accessor);        
-	OAuth.SignatureMethod.sign(message, accessor);
-	request = url + '?' + OAuth.formEncode(message.parameters);
-	$.getJSON( request, function(jd) {
-		data[region] = jd.TotalCount;
+  message = {
+    action: jobURL,
+    method: "GET",
+    parameters: {catergory:"5001", region:region, rows:500}//accountant, wellington
+  };
+
+  OAuth.completeRequest(message, accessor);
+  OAuth.SignatureMethod.sign(message, accessor);
+
+  request = jobURL + '?' + OAuth.formEncode(message.parameters);
+  alert(message.parameters.region)
+  $.getJSON( request, function(jd) {
+    data[region] = jd.TotalCount;
 		dataCount++;
 		if(dataCount == 16) {
 			finishData();
 		}
-	});
+  });
 }
 
-function getJobsData() {
-	for(var i=0;i<16;i++) {
-		getJobData(i);
-	}
+function getBuyData(region) {
+  message = {
+    action: buyURL,
+    method: "GET",
+    parameters: {region:region, rows:500}//accountant, wellington
+  };
+
+  OAuth.completeRequest(message, accessor);
+  OAuth.SignatureMethod.sign(message, accessor);
+
+  request = buyURL + '?' + OAuth.formEncode(message.parameters);
+  alert(message.parameters.region)
+  $.getJSON( request, function(jd) {
+    data[region] = jd.TotalCount;
+		dataCount++;
+		if(dataCount == 16) {
+			finishData();
+		}
+  });
+}
+
+function getRentData(region) {
+  message = {
+    action: rentURL,
+    method: "GET",
+    parameters: {region:region, rows:500}//accountant, wellington
+  };
+
+  OAuth.completeRequest(message, accessor);
+  OAuth.SignatureMethod.sign(message, accessor);
+
+  request = rentURL + '?' + OAuth.formEncode(message.parameters);
+  alert(message.parameters.region)
+  $.getJSON( request, function(jd) {
+    data[region] = jd.TotalCount;
+		dataCount++;
+		if(dataCount == 16) {
+			finishData();
+		}
+  });
+}
+for (i = 1; i < 16; i++) {
+    getJobData(i);
+    getBuyData(i);
+    getRentData(i);
 }
