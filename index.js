@@ -68,19 +68,10 @@ function updateValues(){
 		priceLowValue = $("#PriceLow option:selected").val();
 		priceHighValue = $("#PriceHigh option:selected").val();
 	}
-		//show variable values for debug
-		debugVars();
-}
-
-//display vars
-function debugVars(){
-	document.getElementById('test').innerHTML="jobCat=" + jobCatValue + ", jobSubCat=" + jobSubCatValue + ", keywords=\"" + keywordsValue + "\", jobType =" + jobTypeValue + ", rentType =" + rentTypeValue + ", priceLow =" + priceLowValue + ", priceHigh=" + priceHighValue;
 }
 
 //when page is read, populate the dropdowns
 $(document).ready(function() {
-		//set listener for when job category is choosen
-	//$("#JobCat").change(generateJobCats(false));
 
 	//populate dropdown boxes
 	generateJobCats(true);
@@ -91,6 +82,11 @@ function generateSelect(selector, select_options) {
 	select_options.forEach(function(hash) {
 		$(selector).append("<option value='"+hash['Code']+"'>"+hash['Name']+"</option>");
 	});
+	//update text in dropdown box
+	var temp = $(selector).find("option").first();
+	$(temp).attr('selected', 'selected');
+	var $prevSpan = $(temp).closest('select').prev("span");
+	$prevSpan.html($(temp).text());
 }
 
 //populate dropdowns from json file
@@ -103,6 +99,7 @@ function generateJobCats(generateMainCat){
 	});
 }
 
+//populate subcategory dropdown box based on selected value of the category dropdown box
 function generateJobSubCat(json){
 	var select_options = _.find(json, function(hash){
 		var jobCatCode = $("#JobCat option:selected").val();
