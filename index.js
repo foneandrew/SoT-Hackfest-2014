@@ -67,6 +67,10 @@ function updateValues(){
 		//get values again
 		priceLowValue = $("#PriceLow option:selected").val();
 		priceHighValue = $("#PriceHigh option:selected").val();
+
+		//update span
+		//var $prevSpan = $("PriceHigh").prev("span");
+		//$prevSpan.html(":)");
 	}
 }
 
