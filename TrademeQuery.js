@@ -4,8 +4,10 @@ var rentURL = "https://api.trademe.co.nz/v1/Search/Property/Rental.json";
 
 //OAuth 
 var accessor = {
-  token: "5A713505D7B11F994281F115FF6F5761",
-  tokenSecret: "AF6FF8D85804539140FA96D02754E01F",
+  //token: "5A713505D7B11F994281F115FF6F5761",
+  //tokenSecret: "AF6FF8D85804539140FA96D02754E01F",
+  token: "BA56907F34180FC177648F551DC43065",
+  tokenSecret: "FE5211357DED93654FF7BF0E9A3EB2E5",
   consumerKey : "5815646823D13FA7222C0797A2749E60",
   consumerSecret: "8A6E9A02BD6316ACA7CB3F2D57C28609"
 };
@@ -34,8 +36,8 @@ var dataCount = 0;
 function finishData() {
 	console.log("Data finished");
 	for(var i=0;i<=16;i++) {
-		//finalData[i] = jobData[i];
-		finalData[i] = getAvgRentForRegion(i);
+		finalData[i] = jobData[i];
+		//finalData[i] = getAvgRentForRegion(i);
 		if(isNaN(finalData[i])){
 			finalData[i] = 0;
 		}
@@ -57,7 +59,7 @@ function getJobData(region) {
 
   OAuth.completeRequest(message, accessor);
   OAuth.SignatureMethod.sign(message, accessor);
-
+  console.log(message.parameters.category);
   request = jobURL + '?' + OAuth.formEncode(message.parameters);
   $.getJSON( request, function(jd) {
     jobData[region] = jd.TotalCount;
@@ -122,8 +124,8 @@ function getAvgRentForRegion(region) {
 function refreshAllData() {
 	dataCount = 0;
 	for (i = 0; i <= 16; i++) {
-	    //getJobData(i);
+	    getJobData(i);
 	    //getBuyData(i);
-	    getRentData(i);
+	    //getRentData(i);
 	}
 }

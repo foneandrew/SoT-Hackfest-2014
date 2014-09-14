@@ -67,15 +67,19 @@ function updateValues(){
 		//get values again
 		priceLowValue = $("#PriceLow option:selected").val();
 		priceHighValue = $("#PriceHigh option:selected").val();
-
-		//update span
-		//var $prevSpan = $("PriceHigh").prev("span");
-		//$prevSpan.html(":)");
 	}
+	window.category = jobCatValue;
+	console.log(jobSubCatValue);
+	if(jobSubCatValue != ""){
+		window.category = jobSubCatValue;
+	}
+	refreshAllData();
 }
 
 //when page is read, populate the dropdowns
 $(document).ready(function() {
+		//set listener for when job category is choosen
+	//$("#JobCat").change(generateJobCats(false));
 
 	//populate dropdown boxes
 	generateJobCats(true);
@@ -86,6 +90,7 @@ function generateSelect(selector, select_options) {
 	select_options.forEach(function(hash) {
 		$(selector).append("<option value='"+hash['Code']+"'>"+hash['Name']+"</option>");
 	});
+
 	//update text in dropdown box
 	var temp = $(selector).find("option").first();
 	$(temp).attr('selected', 'selected');
@@ -103,7 +108,6 @@ function generateJobCats(generateMainCat){
 	});
 }
 
-//populate subcategory dropdown box based on selected value of the category dropdown box
 function generateJobSubCat(json){
 	var select_options = _.find(json, function(hash){
 		var jobCatCode = $("#JobCat option:selected").val();
