@@ -12,6 +12,7 @@ var accessor = {
 
 //function to colour a region
 function updateMap(index, color) {
+	console.log(index+" "+color);
     elements = document.getElementsByClassName("subunit "+index);
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.fill = color;
@@ -24,19 +25,24 @@ var rentData = [];
 var buyData = [];
 var jobData = [];
 
-var category = "5001";
+var category = "";
 
-var totalCount = 16;
+var totalCount = 17;
 var dataCount = 0;
 
 //called when all data is loaded, updates the map colouring
 function finishData() {
-	alert("Data finished");
-	for(var i=0;i<15;i++) {
-		finalData[i] = jobData[i];
+	console.log("Data finished");
+	for(var i=0;i<=16;i++) {
+		//finalData[i] = jobData[i];
+		finalData[i] = getAvgRentForRegion(i);
+		if(isNaN(finalData[i])){
+			finalData[i] = 0;
+		}
 	}
+	console.log(finalData)
 	var max = Math.max.apply(Math, finalData);
-	for(var i=0;i<16;i++) {
+	for(var i=0;i<=16;i++) {
 		updateMap(i, "#"+Math.round((finalData[i]*255)/max).toString(16)+"0000");
 	}
 }
@@ -46,7 +52,7 @@ function getJobData(region) {
   message = {
     action: jobURL,
     method: "GET",
-    parameters: {category:category, region:region, rows:500}//accountant, wellington
+    parameters: {category:category, region:region, rows:5}
   };
 
   OAuth.completeRequest(message, accessor);
@@ -56,7 +62,7 @@ function getJobData(region) {
   $.getJSON( request, function(jd) {
     jobData[region] = jd.TotalCount;
 		dataCount++;
-		if(dataCount == totalCount) {
+		if(dataCount >= totalCount) {
 			finishData();
 		}
   });
@@ -96,7 +102,7 @@ function getRentData(region) {
 
   request = rentURL + '?' + OAuth.formEncode(message.parameters);
   $.getJSON( request, function(jd) {
-    rentData[region] = jd.TotalCount;
+    rentData[region] = jd;
 		dataCount++;
 		if(dataCount == totalCount) {
 			finishData();
@@ -104,12 +110,20 @@ function getRentData(region) {
   });
 }
 
+function getAvgRentForRegion(region) {
+	var sum  = 0;
+	for(var i=0;i<rentData[region].List.length;i++){
+		sum += rentData[region].List[i].RentPerWeek;
+	}
+	return sum/rentData[region].List.length;
+}
+
 //gets all data, and updates the page
 function refreshAllData() {
 	dataCount = 0;
-	for (i = 0; i < 16; i++) {
-	    getJobData(i);
+	for (i = 0; i <= 16; i++) {
+	    //getJobData(i);
 	    //getBuyData(i);
-	    //getRentData(i);
+	    getRentData(i);
 	}
 }
