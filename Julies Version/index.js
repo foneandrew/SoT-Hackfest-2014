@@ -18,7 +18,7 @@ var moreInfoPage3 = $('#moreInfoPage3');
         tab.addClass('clicked');
  		setTimeout(function(){
         info.addClass('clicked');
-              },2000);	
+              },2000);
     });
 
     tab.on('click', function(e){
@@ -44,8 +44,8 @@ var moreInfoPage3 = $('#moreInfoPage3');
     	info.removeClass('clicked');
     	moreInfoPage3.addClass('clicked');
     });
- 	
- 	
+
+
 
 //Andrew's stuff
 //vars to hold the page controls
@@ -69,12 +69,12 @@ var priceHighValue = -1;
 function setJobType(type){
 	jobTypeValue = type;
 }
-		
+
 //set the rent type to whichever radio button was just pressed
 function setRentType(type){
 	rentTypeValue = type;
 }
-	
+
 //get values from the controls and store them in the global variables
 function updateValues(){
 	//update values
@@ -83,7 +83,7 @@ function updateValues(){
 	keywordsValue = keywords.value;
 	priceLowValue = $("#PriceLow option:selected").val();
 	priceHighValue = $("#PriceHigh option:selected").val();
-			
+
 	//adjust prices (low to high) if needed
 	if (priceHighValue > 0 && priceHighValue < priceLowValue){
 		//swap radio button values
@@ -94,6 +94,12 @@ function updateValues(){
 		priceLowValue = $("#PriceLow option:selected").val();
 		priceHighValue = $("#PriceHigh option:selected").val();
 	}
+  window.category = jobCatValue;
+  console.log(jobSubCatValue);
+  if(jobSubCatValue != ""){
+    window.category = jobSubCatValue;
+  }
+  refreshAllData();
 }
 
 //when page is read, populate the dropdowns
@@ -129,7 +135,7 @@ function generateJobSubCat(json){
 	var select_options = _.find(json, function(hash){
 		var jobCatCode = $("#JobCat option:selected").val();
 		return jobCatCode == hash['Code'];
-	});	
+	});
 	$("#JobSubCat").empty();
 	generateSelect("#JobSubCat", select_options['SubCategories']);
 }
