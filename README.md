@@ -14,6 +14,8 @@ A merge error caused a few lines to disapear that makes the map update once a ne
 
 My work was to do with the HTML and CSS side of things. I worked primarily on the HTML controls, and had to learn javascript, jquery, and JSON in order to get them to work. My biggest triumph was getting the dropboxes to populate from the trademe API. It was an intense few days, though in terms of what I learnt, I went from knowing zero javascript, to knowing enough to do this project. Extremely stressful but extremely rewarding. I am extremely proud of what I managed to accomplish given what I was up against.
 
-While this is the best demonstration of the quality of work I can do, it does show that I can jump out of my comfort zone and still learn and work with the team on a project despite the massive pressure of Hackfest.
+While this isnt the best demonstration of the quality of work I can do, it does show that I can jump out of my comfort zone and still learn and work with the team on a project despite the massive pressure of Hackfest.
 
-Big thanks to Hamish the mentor from HashBang for helping me out with the code!
+Julies Version folder holds the copy we presented as Hackfest, with the added bonus of refreshing properly now.
+
+Big thanks to Hamish from HashBang for helping me out with the javascript!
